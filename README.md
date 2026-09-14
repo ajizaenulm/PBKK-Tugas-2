@@ -1,8 +1,13 @@
-# Tugas Mandiri PBKK — Pertemuan 2: Routing Laravel
+<p align="center">
+  <img src="public/images/logo-its.png" alt="Logo Institut Teknologi Sepuluh Nopember" height="80">
+</p>
 
-Repository ini berisi pengerjaan Tugas Mandiri Pertemuan 2 untuk mata kuliah **Pemrograman Berbasis Kerangka Kerja (PBKK)**, Departemen Teknik Informatika, Institut Teknologi Sepuluh Nopember (ITS).
+<h1 align="center">Tugas Mandiri PBKK — Pertemuan 2: Routing Laravel</h1>
 
-Aplikasi ini dibuat menggunakan Laravel 12 dan PHP 8.4 untuk mengimplementasikan konsep routing, named routes, validasi regex parameter, route grouping, dan fallback route.
+<p align="center">
+  Aplikasi profil akademis dan implementasi routing sandbox menggunakan <strong>Laravel 12</strong> & <strong>PHP 8.4</strong>.<br>
+  Departemen Teknik Informatika, Fakultas Teknologi Elektro dan Informatika Cerdas (FTEIC) ITS.
+</p>
 
 ---
 
@@ -45,6 +50,36 @@ Sesuai dengan spesifikasi tugas dan tantangan tambahan (nilai A+), berikut rute 
   - Mengelompokkan rute internal di bawah prefix `/dashboard` menggunakan `Route::prefix('dashboard')->group(...)`.
 - **Custom Fallback Route (404)**
   - Menggunakan `Route::fallback()` untuk menangani URL yang tidak terdaftar dengan tampilan error 404 bertema merah standar dan tombol navigasi kembali ke beranda.
+
+---
+
+## Struktur Folder Proyek
+
+Berikut susunan berkas utama dalam proyek ini:
+
+```text
+PBKK-Tugas-2/
+├── app/Http/Controllers/
+│   ├── HomeController.php        # Menampilkan halaman beranda
+│   ├── AcademicController.php    # Profil mahasiswa, kalkulator IPK, & dashboard
+│   └── AgentController.php       # Platform ide AI Agent (parameter opsional & fallback)
+├── public/
+│   └── images/                   # Aset visual (logo resmi ITS)
+├── resources/views/
+│   ├── layouts/
+│   │   └── app.blade.php         # Master layout (navbar, footer, styling)
+│   ├── errors/
+│   │   └── fallback.blade.php    # Halaman error 404 kustom
+│   ├── home.blade.php            # Tampilan beranda & profil singkat
+│   ├── mahasiswa.blade.php       # Tampilan detail profil mahasiswa
+│   ├── agent.blade.php           # Tampilan ide platform agent AI
+│   ├── ipk.blade.php             # Tampilan kalkulator IPK 2 semester
+│   └── dashboard.blade.php       # Tampilan prefix grouping /dashboard
+├── routes/
+│   └── web.php                   # Definisi seluruh rute, named routes, regex, & fallback
+└── tests/Feature/
+    └── RoutingTest.php           # Automated test suite (10 test cases, 45 assertions)
+```
 
 ---
 
