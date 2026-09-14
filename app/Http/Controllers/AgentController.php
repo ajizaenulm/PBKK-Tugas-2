@@ -65,7 +65,7 @@ class AgentController extends Controller
                 'judul' => 'General Assistant Agent (Default Engine)',
                 'badge' => 'Core Engine',
                 'warna' => 'purple',
-                'deskripsi_singkat' => 'Agen serbaguna berkesadaran konteks repo (*repository-aware context*) yang siap menjawab pertanyaan, membuat scaffolding, dan menjelaskan kode.',
+                'deskripsi_singkat' => 'Agen serbaguna dengan pemahaman konteks repositori secara mendalam (repository-aware) yang siap menjawab pertanyaan teknis, membuat scaffolding arsitektur, dan menjelaskan alur logika kode.',
                 'fitur' => [
                     'Index repository penuh menggunakan Vector Search & Semantic Embedding',
                     'Scaffolding instan Controller, Model, Migration, dan Blade template',

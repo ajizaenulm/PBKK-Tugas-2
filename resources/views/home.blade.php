@@ -1,195 +1,222 @@
 @extends('layouts.app')
 
-@section('title', 'Beranda Utama — Vivat ITS & Platform Magentic')
+@section('title', 'Beranda — Portal Profil Mahasiswa ITS & Platform Magentic')
 
 @section('content')
-<div style="display: flex; flex-direction: column; gap: 40px;">
+<div style="width: 100%; max-width: 1140px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px;">
 
-    <!-- Banner Sambutan Khas ITS -->
-    <div class="card" style="background: linear-gradient(135deg, rgba(0, 40, 85, 0.9), rgba(12, 24, 43, 0.95)); border: 1px solid rgba(0, 114, 206, 0.35); position: relative;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 24px;">
-            <div style="max-width: 760px;">
-                <div style="display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap;">
-                    <span class="badge badge-gold">Vivat ITS! Kampus Perjuangan</span>
-                    <span class="badge badge-its">PBKK Pertemuan 2 &bull; Sandbox</span>
-                    <span class="badge badge-emerald">Routing & Controllers Active</span>
-                </div>
-                <h1 style="font-size: 38px; line-height: 1.2; margin-bottom: 16px;">
-                    Selamat Datang di <span style="background: linear-gradient(to right, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Magentic Local Sandbox</span>
-                </h1>
-                <p style="font-size: 16px; color: var(--text-muted); margin-bottom: 24px;">
-                    Aplikasi sandbox routing mandiri mahasiswa Departemen Teknik Informatika ITS. Mengintegrasikan profil akademis resmi, kalkulator performa studi, serta visi proyek akhir semester berupa platform <strong>Agentic AI Browser IDE ("Magentic")</strong>.
-                </p>
-                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                    <a href="{{ route('mahasiswa.show', ['nrp' => $mahasiswa['nrp']]) }}" class="btn btn-primary">
-                        <span>Lihat Profil Lengkap</span>
-                        <code>{{ $mahasiswa['nrp'] }}</code>
-                    </a>
-                    <a href="{{ route('agent.show') }}" class="btn btn-secondary">
-                        <span>Eksplorasi Agen AI</span>
-                        &rarr;
-                    </a>
-                    <a href="{{ route('ipk.hitung', ['ip1' => '3.85', 'ip2' => '3.95']) }}" class="btn btn-gold">
-                        <span>Kalkulator IPK (Challenge A+)</span>
-                    </a>
+    <!-- ========================================================================= -->
+    <!-- 1. HERO BANNER: Sambutan Khas ITS & Profil Mahasiswa                      -->
+    <!-- ========================================================================= -->
+    <div class="grid-2" style="align-items: center; gap: 48px;">
+        
+        <!-- Kolom Kiri: Sambutan Khas ITS & Foto Diri -->
+        <div>
+            <!-- Logo ITS & Badge Sambutan Khas ITS -->
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px; flex-wrap: wrap;">
+                <img src="{{ asset('images/logo-its.png') }}" alt="Logo Institut Teknologi Sepuluh Nopember" style="height: 52px; width: auto; object-fit: contain;">
+                <div style="display: inline-flex; align-items: center; gap: 8px; background-color: var(--navy-subtle); border: 1px solid var(--navy-border); padding: 6px 14px; border-radius: var(--radius-full);">
+                    <span class="live-dot" style="background-color: var(--navy-primary);"></span>
+                    <span style="font-size: 13px; font-weight: 700; color: var(--navy-primary); letter-spacing: 0.05em;">
+                        VIVAT ITS!!!
+                    </span>
                 </div>
             </div>
 
-            <!-- Kartu Ringkas Mahasiswa -->
-            <div class="card card-elevated" style="flex: 1; min-width: 280px; max-width: 360px; padding: 20px; border-color: rgba(245, 166, 35, 0.25);">
-                <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
-                    <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--its-gold), #d97706); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 22px; color: #070d17;">
-                        AZ
-                    </div>
-                    <div>
-                        <h4 style="font-size: 16px; margin-bottom: 2px;">{{ $mahasiswa['nama'] }}</h4>
-                        <div style="font-size: 12px; color: var(--magentic-cyan); font-family: 'JetBrains Mono', monospace;">NRP: {{ $mahasiswa['nrp'] }}</div>
-                    </div>
-                </div>
-                <div style="font-size: 13px; color: var(--text-muted); display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--border-subtle); padding-top: 12px;">
-                    <div><strong>Departemen:</strong> {{ $mahasiswa['departemen'] }}</div>
-                    <div><strong>Semester:</strong> Ke-{{ $mahasiswa['semester'] }} (Tahun ke-3)</div>
-                    <div><strong>Fakultas:</strong> {{ $mahasiswa['fakultas'] }}</div>
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 4px;">
-                        <span>Status Akademik:</span>
-                        <span class="badge badge-emerald" style="padding: 2px 8px; font-size: 11px;">{{ $mahasiswa['status'] }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+            <h1 style="color: var(--navy-dark); font-size: 48px; font-weight: 800; line-height: 1.15; margin-bottom: 20px; letter-spacing: -0.03em;">
+                Portal Profil Mahasiswa<br>
+                <span style="color: var(--navy-primary);">Departemen Teknik Informatika</span>
+            </h1>
 
-    <!-- Core Showcase: Platform "Magentic" -->
-    <div>
-        <div style="margin-bottom: 24px;">
-            <span class="badge badge-purple" style="margin-bottom: 8px;">Proyeksi Proyek Akhir PBKK</span>
-            <h2 style="font-size: 28px; margin-bottom: 8px;">Arsitektur Platform "Magentic"</h2>
-            <p style="color: var(--text-muted); font-size: 15px; max-width: 800px;">
-                {{ $platform['deskripsi'] }}
+            <p style="color: var(--text-body); font-size: 15.5px; line-height: 1.7; margin-bottom: 28px;">
+                Selamat datang di platform profil akademik resmi mahasiswa Institut Teknologi Sepuluh Nopember (ITS) Surabaya yang terintegrasi dengan riset teknologi masa depan dan demonstrasi sistem cerdas <strong>Magentic</strong>.
             </p>
-        </div>
 
-        <!-- 4-Step Autonomous Agent Loop -->
-        <div class="grid-4" style="margin-bottom: 32px;">
-            @foreach($platform['agent_loop'] as $step)
-                <div class="card" style="padding: 22px; border-left: 4px solid var(--magentic-cyan);">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                        <span class="badge badge-its" style="font-size: 11px;">Fase 0{{ $step['step'] }}</span>
-                        <span style="font-size: 20px; font-weight: 800; color: var(--text-dim);">#{{ $step['step'] }}</span>
+            <!-- Foto Diri & Kartu Identitas Mahasiswa -->
+            <div class="card" style="padding: 22px 24px; margin-bottom: 28px; border-left: 4px solid var(--navy-primary);">
+                <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+                    <!-- Foto Diri / Avatar Representatif -->
+                    <div style="position: relative; width: 72px; height: 72px; flex-shrink: 0;">
+                        <div style="width: 100%; height: 100%; border-radius: var(--radius-md); background: linear-gradient(135deg, var(--navy-primary) 0%, #3B82F6 100%); display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 800; color: #FFFFFF; box-shadow: 0 4px 14px rgba(30, 58, 138, 0.25);">
+                            AZM
+                        </div>
+                        <span style="position: absolute; bottom: -2px; right: -2px; width: 14px; height: 14px; border-radius: 50%; background-color: #10B981; border: 2.5px solid #FFFFFF;" title="Status: Mahasiswa Aktif"></span>
                     </div>
-                    <h3 style="font-size: 18px; margin-bottom: 8px; color: #ffffff;">{{ $step['name'] }}</h3>
-                    <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">{{ $step['desc'] }}</p>
-                </div>
-            @endforeach
-        </div>
 
-        <!-- Interactive Mock Monaco Editor with Real-Time Multi-Cursor -->
-        <div class="card" style="padding: 0; background: #080f1a; border-color: rgba(56, 189, 248, 0.25);">
-            <!-- Window header -->
-            <div style="background: #0d192b; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-subtle);">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="width: 12px; height: 12px; border-radius: 50%; background: #f43f5e; display: inline-block;"></span>
-                    <span style="width: 12px; height: 12px; border-radius: 50%; background: #f59e0b; display: inline-block;"></span>
-                    <span style="width: 12px; height: 12px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
-                    <span style="margin-left: 12px; font-size: 13px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace;">
-                        magentic-workspace / routes / web.php
-                    </span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <span class="badge badge-emerald" style="font-size: 11px;">
-                        <span class="status-dot" style="width: 6px; height: 6px;"></span>
-                        Reverb WebSocket Connected
-                    </span>
-                    <span style="font-size: 12px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;">2 Active Peers</span>
-                </div>
-            </div>
-
-            <!-- Code Body with Multi-Cursor indicators -->
-            <div style="padding: 24px; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.8; overflow-x: auto; position: relative;">
-                
-                <!-- Simulated Code Lines -->
-                <div style="color: #64748b;">// 1. Inisialisasi Named Route untuk Platform Magentic</div>
-                <div>
-                    <span style="color: #f43f5e;">Route</span>::<span style="color: #38bdf8;">get</span>(<span style="color: #34d399;">'/'</span>, [<span style="color: #f59e0b;">HomeController</span>::<span style="color: #818cf8;">class</span>, <span style="color: #34d399;">'index'</span>])-><span style="color: #38bdf8;">name</span>(<span style="color: #34d399;">'home'</span>);
-                </div>
-                
-                <div style="color: #64748b; margin-top: 8px;">// 2. Rute Profil dengan Regex 10 Digit NRP ITS</div>
-                <div>
-                    <span style="color: #f43f5e;">Route</span>::<span style="color: #38bdf8;">get</span>(<span style="color: #34d399;">'/mahasiswa/{nrp}'</span>, [<span style="color: #f59e0b;">AcademicController</span>::<span style="color: #818cf8;">class</span>, <span style="color: #34d399;">'mahasiswa'</span>])
-                </div>
-                <div style="padding-left: 24px;">
-                    -><span style="color: #38bdf8;">where</span>(<span style="color: #34d399;">'nrp'</span>, <span style="color: #34d399;">'^[0-9]{10}$'</span>)
-                    <!-- Active Remote Cursor: Aji -->
-                    <span style="display: inline-flex; align-items: center; background: #0284c7; color: white; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 4px; margin-left: 8px; animation: pulse 1.5s infinite;">
-                        &#x25C0; Aji (You)
-                    </span>
-                </div>
-                <div style="padding-left: 24px;">
-                    -><span style="color: #38bdf8;">name</span>(<span style="color: #34d399;">'mahasiswa.show'</span>);
-                </div>
-
-                <div style="color: #64748b; margin-top: 8px;">// 3. Rute Agen Otonom dengan Parameter Opsional Fallback</div>
-                <div>
-                    <span style="color: #f43f5e;">Route</span>::<span style="color: #38bdf8;">get</span>(<span style="color: #34d399;">'/agent/{tema?}'</span>, [<span style="color: #f59e0b;">AgentController</span>::<span style="color: #818cf8;">class</span>, <span style="color: #34d399;">'show'</span>])
-                </div>
-                <div style="padding-left: 24px;">
-                    <!-- Active Remote Cursor: Arda -->
-                    <span style="display: inline-flex; align-items: center; background: #e11d48; color: white; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 4px; margin-right: 8px; animation: pulse 2s infinite;">
-                        &#x25C0; Arda
-                    </span>
-                    -><span style="color: #38bdf8;">name</span>(<span style="color: #34d399;">'agent.show'</span>);
-                </div>
-            </div>
-
-            <!-- Footer Tech Stack Pills -->
-            <div style="padding: 16px 24px; background: #0c182b; border-top: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-                <div style="font-size: 12px; color: var(--text-dim); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">
-                    Arsitektur Ekosistem:
-                </div>
-                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                    <span class="badge" style="background: rgba(255, 255, 255, 0.05); color: #cbd5e1; border: 1px solid var(--border-subtle);">Monaco Editor</span>
-                    <span class="badge" style="background: rgba(255, 255, 255, 0.05); color: #cbd5e1; border: 1px solid var(--border-subtle);">Laravel 11+ / PHP 8.4</span>
-                    <span class="badge" style="background: rgba(255, 255, 255, 0.05); color: #cbd5e1; border: 1px solid var(--border-subtle);">Laravel Reverb</span>
-                    <span class="badge" style="background: rgba(255, 255, 255, 0.05); color: #cbd5e1; border: 1px solid var(--border-subtle);">Autonomous Agent Loop</span>
+                    <!-- Informasi Data Mahasiswa -->
+                    <div style="flex: 1; min-width: 220px;">
+                        <h3 id="member_display" style="font-size: 18px; color: var(--navy-dark); font-weight: 700; margin: 0 0 4px 0;">
+                            {{ $mahasiswa['nama'] }}
+                        </h3>
+                        <div style="font-size: 13.5px; color: var(--navy-primary); font-family: 'JetBrains Mono', monospace; font-weight: 600;">
+                            NRP: {{ $mahasiswa['nrp'] }} &bull; Semester {{ $mahasiswa['semester'] }}
+                        </div>
+                        <div style="font-size: 12.5px; color: var(--text-muted); margin-top: 2px;">
+                            {{ $mahasiswa['departemen'] }} &bull; (FTEIC)
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Kolom Kanan: Terminal Console & Magentic Framework Scope -->
+        <div>
+            <div style="background-color: var(--navy-dark); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--radius-lg); padding: 28px; min-height: 330px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: var(--shadow-lg);">
+                
+                <!-- Terminal Header -->
+                <div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.08);">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="width: 10px; height: 10px; border-radius: 50%; background-color: #EF4444; display: inline-block;"></span>
+                            <span style="width: 10px; height: 10px; border-radius: 50%; background-color: #F59E0B; display: inline-block;"></span>
+                            <span style="width: 10px; height: 10px; border-radius: 50%; background-color: #10B981; display: inline-block;"></span>
+                        </div>
+                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #94A3B8;">
+                            myITS.system // active
+                        </div>
+                    </div>
+
+                    <!-- Terminal Logs -->
+                    <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 2.1;">
+                        <div style="color: #60A5FA;">&gt; inisialisasi portal_akademik...</div>
+                        <div style="color: #F8FAFC;">&gt; memuat data mahasiswa: <span style="color: #93C5FD; font-weight: 600;">{{ $mahasiswa['nama'] }} ({{ $mahasiswa['nrp'] }})</span> [OK]</div>
+                        <div style="color: #94A3B8;">&gt; koneksi SIM Akademik FTEIC ITS terhubung...</div>
+                        <div style="color: #38BDF8; font-size: 12.5px;">
+                            &gt; platform_scope: Magentic Agentic IDE &bull; Vivat ITS!
+                        </div>
+                        <div style="color: #CBD5E1; font-size: 12px; margin-top: 6px; padding-top: 6px; border-top: 1px dashed rgba(255, 255, 255, 0.1);">
+                            &gt; siklus_otonom: [Analyze] &rarr; [Plan] &rarr; [Execute] &rarr; [Verify]
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status Pill -->
+                <div style="background-color: rgba(30, 58, 138, 0.35); border: 1px solid rgba(96, 165, 250, 0.3); border-radius: var(--radius-sm); padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; margin-top: 24px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span class="live-dot" style="background-color: #60A5FA; box-shadow: 0 0 10px #60A5FA;"></span>
+                        <span style="color: #93C5FD; font-size: 13px; font-weight: 600;">
+                            Status Portal Aktif & Terverifikasi
+                        </span>
+                    </div>
+                    <span style="color: #64748B; font-size: 12px; font-family: 'JetBrains Mono', monospace;">ITS-2026</span>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 
-    <!-- Quick Navigation Hub (Semua menggunakan Named Routes) -->
-    <div class="card card-elevated">
-        <h3 style="font-size: 20px; margin-bottom: 16px;">Uji Mandiri Rute & Named Routes</h3>
-        <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">
-            Seluruh tautan navigasi di bawah ini menggunakan fungsi pembantu <code>route('nama.rute')</code> tanpa hardcoded URL:
-        </p>
-
-        <div class="grid-3">
-            <div style="padding: 16px; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); background: rgba(0, 0, 0, 0.2);">
-                <div style="font-size: 12px; color: var(--magentic-cyan); font-weight: 700; margin-bottom: 6px;">RUTE WAJIB 2</div>
-                <h4 style="font-size: 16px; margin-bottom: 8px;">Profil Mahasiswa Valid</h4>
-                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Menguji parameter wajib 10 digit NRP ITS (5025241065).</p>
-                <a href="{{ route('mahasiswa.show', ['nrp' => '5025241065']) }}" class="btn btn-secondary" style="width: 100%;">
-                    Buka Profil 5025241065
-                </a>
+    <!-- ========================================================================= -->
+    <!-- 2. TOMBOL AKSES CEPAT KE MENU LAIN (Quick Navigation Grid)                 -->
+    <!-- ========================================================================= -->
+    <div style="padding-top: 12px;">
+        <div style="margin-bottom: 20px;">
+            <div style="font-size: 12px; font-weight: 700; color: var(--navy-primary); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px;">
+                NAVIGASI UTAMA
             </div>
+            <h2 style="font-size: 26px; color: var(--navy-dark); font-weight: 700;">
+                Akses Cepat Menu Portal
+            </h2>
+        </div>
 
-            <div style="padding: 16px; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); background: rgba(0, 0, 0, 0.2);">
-                <div style="font-size: 12px; color: var(--magentic-indigo); font-weight: 700; margin-bottom: 6px;">RUTE WAJIB 3</div>
-                <h4 style="font-size: 16px; margin-bottom: 8px;">Eksplorasi Tema Agen</h4>
-                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Menguji parameter tema opsional (misal: Code Analysis).</p>
-                <a href="{{ route('agent.show', ['tema' => 'code-analysis']) }}" class="btn btn-secondary" style="width: 100%;">
-                    Buka Tema Code Analysis
-                </a>
-            </div>
+        <div class="grid-4">
+            <!-- 1. Profile Mahasiswa & Departemen -->
+            <a href="{{ route('mahasiswa.show', ['nrp' => '5025241065']) }}" class="card" style="display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; padding: 24px; border: 1.5px solid #CBD5E1; border-top: 4px solid var(--navy-primary); transition: all 0.2s ease;">
+                <div>
+                    <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 100%); display: flex; align-items: center; justify-content: center; color: #FFFFFF; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 17.5px; color: var(--navy-dark); font-weight: 700; margin-bottom: 6px;">
+                        Profil Mahasiswa
+                    </h3>
+                    <p style="font-size: 13px; color: var(--text-body); line-height: 1.55; margin: 0;">
+                        Lihat profil lengkap berdasarkan NRP, prodi, dan daftar keahlian (skills).
+                    </p>
+                </div>
+                <div style="margin-top: 20px; font-size: 13px; font-weight: 700; color: var(--navy-primary); display: flex; align-items: center; justify-content: space-between; background: var(--navy-subtle); padding: 8px 14px; border-radius: var(--radius-sm); border: 1px solid var(--navy-border);">
+                    <span>Buka Profil</span>
+                    <span>&rarr;</span>
+                </div>
+            </a>
 
-            <div style="padding: 16px; border: 1px solid var(--border-subtle); border-radius: var(--radius-md); background: rgba(0, 0, 0, 0.2);">
-                <div style="font-size: 12px; color: var(--its-gold); font-weight: 700; margin-bottom: 6px;">CHALLENGE A+</div>
-                <h4 style="font-size: 16px; margin-bottom: 8px;">Kalkulator IPK Otomatis</h4>
-                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Menjumlahkan dan menghitung rata-rata IP semester (3.80 & 3.90).</p>
-                <a href="{{ route('ipk.hitung', ['ip1' => '3.80', 'ip2' => '3.90']) }}" class="btn btn-gold" style="width: 100%;">
-                    Hitung IPK 3.80 & 3.90
-                </a>
-            </div>
+            <!-- 2. Agent Platform Riset -->
+            <a href="{{ route('agent.show') }}" class="card" style="display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; padding: 24px; border: 1.5px solid #CBD5E1; border-top: 4px solid var(--navy-primary); transition: all 0.2s ease;">
+                <div>
+                    <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 100%); display: flex; align-items: center; justify-content: center; color: #FFFFFF; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 17.5px; color: var(--navy-dark); font-weight: 700; margin-bottom: 6px;">
+                        Platform Agent AI
+                    </h3>
+                    <p style="font-size: 13px; color: var(--text-body); line-height: 1.55; margin: 0;">
+                        Eksplorasi ide platform Agentic AI "Magentic" dengan dukungan tema dinamis.
+                    </p>
+                </div>
+                <div style="margin-top: 20px; font-size: 13px; font-weight: 700; color: var(--navy-primary); display: flex; align-items: center; justify-content: space-between; background: var(--navy-subtle); padding: 8px 14px; border-radius: var(--radius-sm); border: 1px solid var(--navy-border);">
+                    <span>Eksplorasi AI</span>
+                    <span>&rarr;</span>
+                </div>
+            </a>
+
+            <!-- 3. Kalkulator IPK -->
+            <a href="{{ route('ipk.hitung', ['ip1' => '3.88', 'ip2' => '3.92']) }}" class="card" style="display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; padding: 24px; border: 1.5px solid #CBD5E1; border-top: 4px solid var(--navy-primary); transition: all 0.2s ease;">
+                <div>
+                    <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 100%); display: flex; align-items: center; justify-content: center; color: #FFFFFF; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+                            <line x1="8" y1="6" x2="16" y2="6"></line>
+                            <line x1="16" y1="14" x2="16" y2="18"></line>
+                            <path d="M16 10h.01"></path>
+                            <path d="M12 10h.01"></path>
+                            <path d="M8 10h.01"></path>
+                            <path d="M12 14h.01"></path>
+                            <path d="M8 14h.01"></path>
+                            <path d="M12 18h.01"></path>
+                            <path d="M8 18h.01"></path>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 17.5px; color: var(--navy-dark); font-weight: 700; margin-bottom: 6px;">
+                        Kalkulator IPK
+                    </h3>
+                    <p style="font-size: 13px; color: var(--text-body); line-height: 1.55; margin: 0;">
+                        Hitung akumulasi dan rata-rata IP dua semester dari parameter dinamis URL.
+                    </p>
+                </div>
+                <div style="margin-top: 20px; font-size: 13px; font-weight: 700; color: var(--navy-primary); display: flex; align-items: center; justify-content: space-between; background: var(--navy-subtle); padding: 8px 14px; border-radius: var(--radius-sm); border: 1px solid var(--navy-border);">
+                    <span>Hitung IPK</span>
+                    <span>&rarr;</span>
+                </div>
+            </a>
+
+            <!-- 4. Dashboard Portal -->
+            <a href="{{ route('dashboard.index') }}" class="card" style="display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; padding: 24px; border: 1.5px solid #CBD5E1; border-top: 4px solid var(--navy-primary); transition: all 0.2s ease;">
+                <div>
+                    <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 100%); display: flex; align-items: center; justify-content: center; color: #FFFFFF; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                            <polyline points="2 17 12 22 22 17"></polyline>
+                            <polyline points="2 12 12 17 22 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 17.5px; color: var(--navy-dark); font-weight: 700; margin-bottom: 6px;">
+                        Dashboard Portal
+                    </h3>
+                    <p style="font-size: 13px; color: var(--text-body); line-height: 1.55; margin: 0;">
+                        Wadah grouping rute terintegrasi layanan akademik Departemen Teknik Informatika.
+                    </p>
+                </div>
+                <div style="margin-top: 20px; font-size: 13px; font-weight: 700; color: var(--navy-primary); display: flex; align-items: center; justify-content: space-between; background: var(--navy-subtle); padding: 8px 14px; border-radius: var(--radius-sm); border: 1px solid var(--navy-border);">
+                    <span>Buka Dashboard</span>
+                    <span>&rarr;</span>
+                </div>
+            </a>
         </div>
     </div>
 

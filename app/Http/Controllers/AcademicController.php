@@ -26,9 +26,28 @@ class AcademicController extends Controller
                 'semester' => 5,
                 'status_akademik' => 'Mahasiswa Aktif',
                 'dosen_wali' => 'Dosen Pembimbing Akademik FTEIC ITS',
+                'prodi' => 'Teknik Informatika (Informatics Engineering)',
                 'ipk_kumulatif' => 3.88,
                 'sks_ditempuh' => 92,
                 'minat_studi' => 'Pemrograman Berbasis Kerangka Kerja (PBKK), Agentic AI Systems, Cloud & Full-Stack Development',
+                'daftar_skill' => [
+                    [
+                        'kategori' => 'Framework & Backend Development',
+                        'skills' => ['Laravel 11/12', 'PHP 8.4+', 'RESTful API & GraphQL', 'MVC & Clean Architecture', 'Blade Templating Engine'],
+                    ],
+                    [
+                        'kategori' => 'Agentic AI & Intelligence Systems',
+                        'skills' => ['Autonomous Agent Loops (Analyze-Plan-Execute-Verify)', 'Prompt Engineering', 'AST Code Parsing', 'LLM Context Orchestration'],
+                    ],
+                    [
+                        'kategori' => 'Frontend & Web Technologies',
+                        'skills' => ['Modern Vanilla CSS Design Tokens', 'JavaScript ESNext', 'Responsive Mobile-First UI', 'WebSockets (Laravel Reverb)'],
+                    ],
+                    [
+                        'kategori' => 'Database, DevOps & Tooling',
+                        'skills' => ['MySQL & PostgreSQL Relational DB', 'Git & GitHub Collaboration', 'Docker Sandbox Isolation', 'PHPUnit & Automated Testing'],
+                    ],
+                ],
                 'mata_kuliah_semester_ini' => [
                     ['kode' => 'IF234501', 'nama' => 'Pemrograman Berbasis Kerangka Kerja (PBKK)', 'sks' => 3, 'kelas' => 'A'],
                     ['kode' => 'IF234502', 'nama' => 'Kecerdasan Komputasional & Agen Otonom', 'sks' => 3, 'kelas' => 'B'],
@@ -47,8 +66,9 @@ class AcademicController extends Controller
             $mahasiswa = [
                 'nama' => 'Mahasiswa ITS (Simulasi NRP ' . $nrp . ')',
                 'nrp' => $nrp,
-                'departemen' => 'Fakultas Teknologi Elektro dan Informatika Cerdas',
-                'fakultas' => 'FTEIC - Kampus Perjuangan Sukolilo',
+                'departemen' => 'Teknik Informatika',
+                'prodi' => 'Teknik Informatika',
+                'fakultas' => 'Fakultas Teknologi Elektro dan Informatika Cerdas (FTEIC)',
                 'kampus' => 'Institut Teknologi Sepuluh Nopember (ITS)',
                 'angkatan' => '20' . substr($nrp, 4, 2),
                 'semester' => 5,
@@ -57,6 +77,12 @@ class AcademicController extends Controller
                 'ipk_kumulatif' => 3.75,
                 'sks_ditempuh' => 88,
                 'minat_studi' => 'Teknologi Informasi & Rekayasa Perangkat Lunak',
+                'daftar_skill' => [
+                    [
+                        'kategori' => 'Kompetensi Utama',
+                        'skills' => ['Pemrograman Web', 'Struktur Data & Algoritma', 'Basis Data Terdistribusi', 'Jaringan Komputer'],
+                    ],
+                ],
                 'mata_kuliah_semester_ini' => [
                     ['kode' => 'IF234501', 'nama' => 'Pemrograman Berbasis Kerangka Kerja (PBKK)', 'sks' => 3, 'kelas' => 'A'],
                     ['kode' => 'IF234506', 'nama' => 'Sistem Berkas & Algoritma', 'sks' => 3, 'kelas' => 'B'],
